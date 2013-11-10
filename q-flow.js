@@ -1,0 +1,54 @@
+var q = require('q');
+
+/**
+ * Run `fn`, which returns a promise, on each item in `array`.
+ */
+q.each = function (array, fn) {
+    return array.reduce(function (promise, each) {
+        return promise.then(function () {
+            return fn(each);
+        });
+    }, q());
+};
+
+var find = function (array, fn, current) {
+    return q.until(function () {
+        return fn(array[current]).then(function (result) {
+            if (result) {
+                return array[current];
+            }
+
+            current += 1;
+            if (current >= array.length) {
+                return true; // break the loop
+            }
+        });
+    });
+};
+
+/**
+ * Find first object in `array` satisfying the condition returned by the
+ * promise returned by `fn`.
+ */
+q.find = function (array, fn) {
+    return find(array, fn, 0).then(function (result) {
+        if (result === true) {
+            return undefined;
+        }
+
+        return result;
+    });
+};
+
+/**
+ * Loop until the promise returned by `fn` returns a truthy value.
+ */
+q.until = function (fn) {
+    return fn().then(function (result) {
+        if (result) {
+            return result;
+        }
+
+        return q.until(fn);
+    });
+};
