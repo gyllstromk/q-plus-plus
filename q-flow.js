@@ -11,6 +11,21 @@ q.each = function (array, fn) {
     }, q());
 };
 
+/**
+ * Call `fn`, which returns a promise, on each item in `array`, returning new
+ * array.
+ */
+q.map = function (array, fn) {
+    var mappedArray = [];
+    q.each(array, function (each) {
+        return fn(each).then(function (item) {
+            mappedArray.push(item);
+        });
+    }, q()).then(function () {
+        return mappedArray;
+    });
+};
+
 var find = function (array, fn, current) {
     return q.until(function () {
         return fn(array[current]).then(function (result) {

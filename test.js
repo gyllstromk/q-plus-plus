@@ -17,6 +17,14 @@ describe('q-flow', function () {
         }).fin(done);
     });
 
+    it('map', function (done) {
+        return q.each([ 1, 2, 3 ], function (each) {
+            return q.when(each + 1);
+        }).then(function (value) {
+            expect(value).to.deep.equal([ 2, 3, 4 ]);
+        }).fin(done);
+    });
+
     it('until', function (done) {
         var attempt = 0;
         return q.until(function () {
