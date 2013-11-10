@@ -12,7 +12,8 @@ describe('q-flow', function () {
         return q.each([ 1, 2, 3 ], function (each) {
             sum += each;
             return q.when(each);
-        }).then(function () {
+        }).then(function (value) {
+            expect(value).to.be.undefined;
             expect(sum).to.equal(6);
         }).fin(done);
     });

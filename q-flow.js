@@ -8,7 +8,9 @@ q.each = function (array, fn) {
         return promise.then(function () {
             return fn(each);
         });
-    }, q());
+    }, q()).then(function () {
+        // mask last value
+    });
 };
 
 /**
