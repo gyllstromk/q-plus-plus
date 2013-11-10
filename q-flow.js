@@ -1,7 +1,7 @@
 var q = require('q');
 
 /**
- * Run `fn`, which returns a promise, on each item in `array`.
+ * Call `fn`, which returns a promise, on each item in `array`.
  */
 q.each = function (array, fn) {
     return array.reduce(function (promise, each) {
