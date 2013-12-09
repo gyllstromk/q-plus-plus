@@ -1,6 +1,6 @@
 {
   "name": "q-flow",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Flow control (loops, arrays, etc) with promises and Q.",
   "main": "q-flow.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/gyllstromk/q-promises-flow.git"
+    "url": "git://github.com/gyllstromk/q-plus-plus.git"
   },
   "keywords": [
     "q",
@@ -18,7 +18,7 @@
   "author": "Karl Gyllstrom",
   "license": "BSD",
   "bugs": {
-    "url": "https://github.com/gyllstromk/q-promises-flow/issues"
+    "url": "https://github.com/gyllstromk/q-plus-plus/issues"
   },
   "devDependencies": {
     "mocha": "~1.14.0",
