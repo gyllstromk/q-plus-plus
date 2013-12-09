@@ -72,7 +72,7 @@ q.until = function (fn) {
 
 /**
  * Allow one to place node-styled callback onto promise. This exits the promise
- * run-loop so that it now longer catches exceptions.
+ * run-loop so that it no longer catches exceptions.
  */
 q.makePromise.prototype.addBack = function (callback) {
     return this.then(function (result) {
