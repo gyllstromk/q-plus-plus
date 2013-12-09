@@ -50,3 +50,13 @@ q.until(function () {
     /* finished */
 });
 ```
+
+# addBack
+
+Allow one to place node-styled callback onto promise. This exits the promise run-loop so that it now longer catches exceptions.
+
+```js
+promise.addBack(function (err, result) {
+    // gets `err` if failure happened, otherwise `result` is populated
+});
+```
