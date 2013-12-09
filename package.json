@@ -1,6 +1,6 @@
 {
   "name": "q-flow",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Flow control (loops, arrays, etc) with promises and Q.",
   "main": "q-flow.js",
   "scripts": {
