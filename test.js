@@ -56,4 +56,25 @@ describe('q-flow', function () {
             }).fin(done);
         });
     });
+
+    describe('addBack', function () {
+        it('passes result on success', function (done) {
+            return q.when('test').addBack(function (err, result) {
+                expect(err).to.be.null;
+                expect(result).to.equal('test');
+                done();
+            });
+        });
+
+        it('passes error on failure', function (done) {
+            var error = new Error();
+
+            return q.fcall(function () {
+                throw error;
+            }).addBack(function (err, result) {
+                expect(err).to.equal(error);
+                done();
+            });
+        });
+    });
 });
