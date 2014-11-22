@@ -1,6 +1,6 @@
 {
   "name": "q-flow",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Flow control (loops, arrays, etc) with promises and Q.",
   "main": "q-flow.js",
   "scripts": {
@@ -25,6 +25,6 @@
     "chai": "~1.8.1"
   },
   "dependencies": {
-    "q": "~0.9.7"
+    "q": "^1.1.1"
   }
 }
