@@ -19,10 +19,16 @@ q.each = function (array, fn) {
  */
 q.map = function (array, fn) {
     var mappedArray = [];
-    q.each(array, function (each) {
-        return fn(each).then(function (item) {
-            mappedArray.push(item);
-        });
+    return q.each(array, function (each) {
+        var result =  fn(each);
+        if (result && result.then) {
+            return result.then(function (item) {
+                mappedArray.push(item);
+            });
+        } else {
+            mappedArray.push(result);
+            return result;
+        }
     }, q()).then(function () {
         return mappedArray;
     });
@@ -30,7 +36,12 @@ q.map = function (array, fn) {
 
 var find = function (array, fn, current) {
     return q.until(function () {
-        return fn(array[current]).then(function (result) {
+        var result =  fn(array[current]);
+        if (!result || !result.then) {
+            result = q(result);
+        }
+
+        return result.then(function (result) {
             if (result) {
                 return array[current];
             }
@@ -60,13 +71,27 @@ q.find = function (array, fn) {
 /**
  * Loop until the promise returned by `fn` returns a truthy value.
  */
-q.until = function (fn) {
+q.until = function (fn, delay, max, tries) {
+    if (tries === undefined) {
+        tries = 0;
+    }
+
+    if (max !== undefined && tries >= max) {
+        throw new Error("timeout");
+    }
+
     return fn().then(function (result) {
         if (result) {
             return result;
         }
 
-        return q.until(fn);
+        if (delay) {
+            return q.delay(delay).then(function () {
+                return q.until(fn, delay, max, tries + 1);
+            });
+        } else {
+            return q.until(fn, undefined, max, tries + 1);
+        }
     });
 };
 

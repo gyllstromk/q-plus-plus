@@ -1,6 +1,6 @@
 {
   "name": "q-flow",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Flow control (loops, arrays, etc) with promises and Q.",
   "main": "q-flow.js",
   "scripts": {
@@ -20,11 +20,12 @@
   "bugs": {
     "url": "https://github.com/gyllstromk/q-plus-plus/issues"
   },
-  "devDependencies": {
-    "mocha": "~1.14.0",
-    "chai": "~1.8.1"
-  },
   "dependencies": {
-    "q": "~0.9.7"
+    "q": "^1.1.1"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "chai-as-promised": "^4.1.1",
+    "mocha": "^2.0.1"
   }
 }
